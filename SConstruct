@@ -1,36 +1,69 @@
 # -*- mode: python -*-
-import os
+import re
+from os import listdir
+from os.path import join, splitext
 
-# Project structure
-inc_dir  = 'inc'
-src_dir  = 'src'
-test_dir = 'test'
+### File extensions
+cpp = r".*\.[Cc]([Pp]?)\1"
+hpp = r".*\.[Hh]([Pp]?)\1"
 
-# External libraries
-libs = Split("""
-boost_regex
-boost_program_options
-""")
+### Helper functions
+def options(*lst):
+    return ' ' + ' '.join(lst) + ' '
 
-# Compilation settings
-comp = 'g++'
-flgs = '-Wall -pedantic -g'
+def getMatchingFiles(regex, d='.'):
+    return [join(d, x) for x in listdir(d) if re.match(regex, x)]
 
-# Environments
+def makeTargets(name, env=None, **kw):
+    exc = join(dir_build, name)
+    src = [splitext(name)[0] + '.cpp']
+
+    if not env: env = DefaultEnvironment()
+    for target,action in kw.items():
+        env.AlwaysBuild(env.Alias(target, [], action))
+    env.Program(exc, src + src_common)
+    Alias(name, exc)
+
+### Project structure
+dir_inc   = 'inc'
+dir_src   = 'src'
+dir_test  = 'tests'
+dir_build = 'build'
+
+### Targets
 Decider('make')
-default = Environment()
-default.Append(CC      = comp)
-default.Append(CCFLAGS = flgs)
-default.Append(LIBS    = libs)
-default.Append(CPPPATH = inc_dir)
 
-# Sources
-src_ext = '*.cpp'
-src_common = [f for f in
-              Glob(os.path.join(src_dir, src_ext))]
+compiler   = 'g++'
+src_common = getMatchingFiles(cpp, dir_src)
 
-# Builds
-main = default.Program('main', ['main.cpp'] + src_common)
+# default
+flg_default = options('-Wall', '-pedantic', '-g')
+lib_default = Split("""
+""")
+default = Environment(
+    CC      = compiler,
+    CCFLAGS = flg_default,
+    LIBS    = lib_default,
+    CPPPATH = dir_inc)
 
-Default(None)
+makeTargets('main', default)
+
+# test
+flg_test = options('-D_REENTRANT', '-fPIC')
+lib_test = Split("""
+pthread
+dl
+""")
+tests = default.Clone()
+tests.Append(CCFLAGS = flg_test)
+tests.Append(LIBS    = lib_test)
+
+testgen = 'tools/fructose_gen.py %s > %s' % (
+    ' '.join(getMatchingFiles(hpp, dir_test)),
+    '$TARGETS')
+makeTargets('test', tests,
+            testfile = tests.Command('test.cpp', [], testgen))
+
+###
+Default()
 print "BUILD_TARGETS is", map(str, BUILD_TARGETS)
