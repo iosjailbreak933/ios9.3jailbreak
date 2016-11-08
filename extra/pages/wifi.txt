@@ -1,0 +1,16 @@
+<style>.show{display:block;}
+.hide{display:none;}</style>
+<h1>LB-Wi-Fi Password</h1>
+<p>First of all change your device name so they cant find out who you are...</p>
+<div id="div1" onclick="ShowSecond();">Show Password</div>
+<div id="div2" style="" class="hide"><span>Password:</span> Lyn8r00k!2014</div>
+
+<script>
+function ShowSecond() {
+    var div2 = document.getElementById("div2");
+    div2.className = "show";
+    setTimeout(function () {
+        div2.className = 'hide';
+    }, 10000);
+}
+</script>

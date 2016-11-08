@@ -4,9 +4,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--snowStorm.toggleSnow();-->
-    
-    
+
 <style>
     body {margin: 0; background-color: #2f2f2f;
         overflow: hidden;
@@ -254,212 +252,13 @@ div.card.show div.flap2 {
   -webkit-transition: all 0.3s 0.2s ease-out;
   transition: all 0.3s 0.2s ease-out;
 }
+    
+    #containter{color: white;}
     </style>
 </head>
 <body>
     
-    
-    
-    
-    <div style="display:none;">
-    <script type="text/javascript" src="/snow.js"></script>
-<script>
-snowStorm.followMouse = false;
-    snowStorm.freezeOnBlur = true;
-    snowStorm.autoStart = false;
-    
-</script>
-    <style>.lightrope {
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  position: absolute;
-  z-index: 1;
-  margin: -15px 0 0 0;
-  padding: 0;
-  pointer-events: none;
-  width: 100%;
-}
-.lightrope li {
-  position: relative;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: block;
-  width: 12px;
-  height: 28px;
-  border-radius: 50%;
-  margin: 20px;
-  display: inline-block;
-  background: #00f7a5;
-  box-shadow: 0px 4.66667px 24px 3px #00f7a5;
-  -webkit-animation-name: flash-1;
-          animation-name: flash-1;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-}
-.lightrope li:nth-child(2n+1) {
-  background: cyan;
-  box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.5);
-  -webkit-animation-name: flash-2;
-          animation-name: flash-2;
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-}
-.lightrope li:nth-child(4n+2) {
-  background: #f70094;
-  box-shadow: 0px 4.66667px 24px 3px #f70094;
-  -webkit-animation-name: flash-3;
-          animation-name: flash-3;
-  -webkit-animation-duration: 1.1s;
-          animation-duration: 1.1s;
-}
-.lightrope li:nth-child(odd) {
-  -webkit-animation-duration: 1.8s;
-          animation-duration: 1.8s;
-}
-.lightrope li:nth-child(3n+1) {
-  -webkit-animation-duration: 1.4s;
-          animation-duration: 1.4s;
-}
-.lightrope li:before {
-  content: "";
-  position: absolute;
-  background: #222;
-  width: 10px;
-  height: 9.33333px;
-  border-radius: 3px;
-  top: -4.66667px;
-  left: 1px;
-}
-.lightrope li:after {
-  content: "";
-  top: -14px;
-  left: 9px;
-  position: absolute;
-  width: 52px;
-  height: 18.66667px;
-  border-bottom: solid #222 2px;
-  border-radius: 50%;
-}
-.lightrope li:last-child:after {
-  content: none;
-}
-.lightrope li:first-child {
-  margin-left: -40px;
-}
 
-@-webkit-keyframes flash-1 {
-  0%, 100% {
-    background: #00f7a5;
-    box-shadow: 0px 4.66667px 24px 3px #00f7a5;
-  }
-  50% {
-    background: rgba(0, 247, 165, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(0, 247, 165, 0.2);
-  }
-}
-
-@keyframes flash-1 {
-  0%, 100% {
-    background: #00f7a5;
-    box-shadow: 0px 4.66667px 24px 3px #00f7a5;
-  }
-  50% {
-    background: rgba(0, 247, 165, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(0, 247, 165, 0.2);
-  }
-}
-@-webkit-keyframes flash-2 {
-  0%, 100% {
-    background: cyan;
-    box-shadow: 0px 4.66667px 24px 3px cyan;
-  }
-  50% {
-    background: rgba(0, 255, 255, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.2);
-  }
-}
-@keyframes flash-2 {
-  0%, 100% {
-    background: cyan;
-    box-shadow: 0px 4.66667px 24px 3px cyan;
-  }
-  50% {
-    background: rgba(0, 255, 255, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.2);
-  }
-}
-@-webkit-keyframes flash-3 {
-  0%, 100% {
-    background: #f70094;
-    box-shadow: 0px 4.66667px 24px 3px #f70094;
-  }
-  50% {
-    background: rgba(247, 0, 148, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(247, 0, 148, 0.2);
-  }
-}
-@keyframes flash-3 {
-  0%, 100% {
-    background: #f70094;
-    box-shadow: 0px 4.66667px 24px 3px #f70094;
-  }
-  50% {
-    background: rgba(247, 0, 148, 0.4);
-    box-shadow: 0px 4.66667px 24px 3px rgba(247, 0, 148, 0.2);
-  }
-}
-</style>
-    <ul class="lightrope">
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>
-</div>
 <nav><div class="n-back" onclick="javascript:location.href='/dash'">LB-Leaks</div>
     <div class="n-title"></div>
     </nav>
@@ -475,75 +274,7 @@ snowStorm.followMouse = false;
     </div>
     <div id="containter">
     
-    <div class="cards">
 
-  <div class="card">
-    <img src="/assets/img/leaks.jpg">
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>Leaks</h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        L-Drive and Teacher-Drive Leaks.
-      </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="/assets/leaks/" class="btn">Visit</a>
-        </div>
-      </div>
-    </div>
-  </div>
-        
-        
-  <div class="card">
-    <img src="/assets/img/wifi.png">
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>Wifi</h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        Wifi Password for lb-wi-fi.
-      </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="/extra/?url=wifi" class="btn">Visit</a>
-        </div>
-      </div>
-    </div>
-  </div>           
-
-          <div class="card">
-    <img src="/assets/img/video.jpg">
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>Videos</h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        Videos
-      </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="/video/" class="btn">Visit</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-         
-
-</div>
     
     </div>
     
@@ -570,4 +301,19 @@ snowStorm.followMouse = false;
         }
     });
 });</script>
+    
+        <script type="text/javascript">
+$(document).ready(function() {
+	var url = window.location.href;
+	option = url.match(/url=(.*)/)[1];
+	showDiv(option);
+
+});
+function showDiv(option) {
+    $('#containter').load("/extra/pages/" + option + ".txt");
+
+};
+
+   
+</script>
 </body>

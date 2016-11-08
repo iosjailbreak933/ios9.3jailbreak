@@ -1,0 +1,84 @@
+<head>
+<title>Video - Super Edu</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<style>
+    body {margin: 0; background-color: #2f2f2f;
+        overflow: hidden;
+    }
+    #containter {width: 700px;
+    margin: auto;
+    height: 100vh;
+    background-color: white;}
+    .n-back {background-color: #0076ff; color: white;
+    padding: 15px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+    }
+    nav{width: 100vw;
+    background-color: #525252;
+        display: inline-block;
+    }
+    .n-title{float: right;
+        font-family: 'Product Sans',Arial,sans-serif;
+    color: white;
+        font-size: 24px;
+        display: inline-block;
+        padding-top: 13px;
+        padding-right: 10px;
+    }
+    
+    
+    
+    .v-frame{height: 394px;
+        background-color: black;
+    }
+    .v-title{font-family: 'Product Sans',Arial,sans-serif;
+        padding: 5px;
+        font-size: 20px;
+}
+    .v-desc{
+        font-family: 'Product Sans',Arial,sans-serif;
+        font-size: 15px;
+        padding: 5px;
+    }
+    .lb-share-tt[style] {display: none !important;}
+    </style>
+</head>
+<body>
+    
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var url = window.location.href;
+	option = url.match(/video=(.*)/)[1];
+	showDiv(option);
+
+});
+function showDiv(option) {
+    $('.v-title').load("/video/files/" + option + "/title.txt");
+    $('.v-desc').load("/video/files/" + option + "/desc.txt");
+    document.getElementById("player").contentWindow.document.location.href='/video/files/'+ option +'/player.html';
+};
+
+   
+</script>
+<nav><div class="n-back" onclick="history.go(-1);"><i class="material-icons">arrow_back</i></div>
+    <div class="n-title">LB-Leaks</div>
+    </nav>
+    <div id="containter">
+        <iframe width="100%" src="player.html" id="player" class="v-frame" style="border:0;" allowfullscreen></iframe>
+        
+        
+        
+        
+        
+        
+        <div class="v-title">No Video Here</div>
+        <div class="v-desc">No Video Here
+        </div>
+    </div>
+    </body>
