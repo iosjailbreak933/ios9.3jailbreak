@@ -1,0 +1,234 @@
+<head>
+<title>Test - Super Edu</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<style>
+        body {margin: 0px; background-color: black;}
+        .out-video{width: 200px; position: relative;}
+        #output {z-index: 2;}
+        video{
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+        }
+
+        #v-controls {
+position:absolute;
+float:left;
+    width:100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0);
+    z-index:1;
+            cursor: default;
+}
+    #output {color: white; 
+    font-size: 40px;
+          position: absolute;
+        bottom: 7px;
+        left: 5px;
+    
+                cursor: default;
+}
+    
+        #full {color: white; 
+    font-size: 40px;
+          position: absolute;
+        bottom: 7px;
+        right: 5px;
+    z-index: 2;
+                cursor: default;
+}
+    
+    .unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  
+}
+    
+    .progress {
+        position: absolute;
+        left: 60px;
+        right: 60px;
+        height: 5px;
+        background-color: #111;
+        bottom: 20px;
+        z-index: 2;
+        margin-top: 3px;
+        margin-bottom: 3px;
+}
+
+.video-progress {
+width: auto;
+height: 5px;
+position: absolute;
+bottom: 0;
+left: 0;
+background-color: #ffffff;
+}
+
+.video-progress > div {
+position: absolute;
+right: 0;
+    bottom: 0px;
+width: 0px;
+height: 2px;
+background-color: green;
+}
+    </style>
+</head>
+<body>
+    
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <div id="containter">
+<object type="application/x-shockwave-flash" id="player" data="/video/flash/GrindPlayer.swf" width="100%" height="100%" style="visibility: visible;">
+    <param name="allowFullScreen" value="true">
+    <param name="allowScriptAccess" value="always">
+    <param name="wmode" value="opaque">
+    <param name="flashvars" value="autoPlay=true&amp;src=http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8?sd=10&b=1200&rebase=on;streamType=live&amp;scaleMode=letterbox&amp;plugin_hls=/video/flash/flashlsOSMF.swf&amp;hls_debug=false&amp;hls_debug2=false&amp;hls_minbufferlength=-1&amp;hls_lowbufferlength=2&amp;hls_maxbufferlength=60&amp;hls_startfromlowestlevel=false&amp;hls_seekfromlowestlevel=false&amp;hls_live_flushurlcache=false&amp;hls_seekmode=ACCURATE&amp;hls_capleveltostage=false&amp;hls_maxlevelcappingmode=downscale">
+        </object>
+    </div>
+        <!--<script type="text/javascript">
+$(document).ready(function() {
+	var url = window.location.href;
+	option = url.match(/url=(.*)/)[1];
+	showDiv(option);
+});
+function showDiv(option) {
+	$('.boxes').hide();
+    //$('#v-gen').load('');
+    $('#v-gen').html('<video autoplay poster="loading.gif" id="v-video"><source src="'+ option +'" type="video/mp4"></video>');
+
+}
+</script>-->
+     <script>
+        var media = document.getElementById('v-video');
+
+        // Playing event
+        var isPlaying = function(e) {
+            $("#output").html("pause");
+        };
+        // Pause event
+        var onPause = function(e) { 
+            $("#output").html("play_arrow"); 
+        };
+        
+        media.addEventListener("playing", isPlaying, false);    
+        media.addEventListener("pause", onPause, false);
+         
+         var myVideo = document.getElementById("v1"); 
+function playPause() { 
+if (media.paused) 
+    media.play(); 
+else 
+    media.pause(); };
+         
+         
+         
+         
+ $(document).ready(function(){
+
+$('#v-video').on("timeupdate", function() {
+$('.progress .video-progress').css('width', (100 / $('#v-video')[0].duration) * $('#v-video')[0].currentTime + '%')
+});
+
+$('.play-pause-btn').on('click',function(){
+ 
+if($(this).attr('data-click') == 1) {
+$(this).attr('data-click', 0)
+$(this).text('Play')
+$('#v-video')[0].pause();
+} else {
+$(this).attr('data-click', 1)
+$(this).text('Pause')
+$('#v-video')[0].play();
+}
+ 
+});
+
+
+$('.progress').on('click',function(e){
+
+var relX = e.pageX - $(this).offset().left;
+var percentageLeft = (relX / $(this).width()) * 100
+
+$('.progress .video-progress').css('width', percentageLeft + '%')
+
+$('#v-video')[0].currentTime = ($('#v-video')[0].duration / 100) * percentageLeft;
+
+});
+
+});   
+       var video = document.getElementById('v-video'),
+            container = document.getElementById('containter'),
+            fullscreenbutton = document.getElementById('full');
+         
+                 var isFullscreen= false;
+        fullscreenbutton.addEventListener('click', function() {
+            if(!isFullscreen){
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } 
+                else if (video.mozRequestFullScreen) {
+                    container.mozRequestFullScreen(); // Firefox
+                } 
+                else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen(); // Chrome and Safari
+                }
+                isFullscreen=true;
+                fullscreenbutton.classList.remove('icon-fullscreen-alt');
+                fullscreenbutton.classList.add('icon-fullscreen-exit-alt');
+            }
+            else{
+
+                if(document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } 
+                else if(document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } 
+                else if(document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+                isFullscreen=false;
+                fullscreenbutton.classList.add('icon-fullscreen-alt');
+                fullscreenbutton.classList.remove('icon-fullscreen-exit-alt');
+            }
+            
+        }, false);
+         
+         $(window).keypress(function(e) {
+  var video = document.getElementById("v-video");
+  if (e.which == 32) {
+    if (video.paused == true)
+      video.play();
+    else
+      video.pause();
+  }
+});
+         
+    </script><!--<script>       
+         $("#v-controls").mouseover(function () {
+    $("#controls").fadeIn();
+});
+$("#v-controls").mouseleave(function () {
+    if($("#controls").is(":hover")){
+    }else{
+        $("#controls").fadeOut();
+    }
+});
+$("#v-controls").mouseleave(function () {
+    if($("#v-controls").is(":hover")){
+    }else{
+        $("#controls").fadeOut();
+    }
+});
+    </script>   -->
+    </body>
